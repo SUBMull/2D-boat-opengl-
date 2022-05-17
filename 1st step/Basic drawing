@@ -1,0 +1,178 @@
+#include<Windows.h>
+#include<glut.h>
+
+void draw(void) {
+	glClear(GL_COLOR_BUFFER_BIT ); //clere color buffers
+
+	glLoadIdentity(); //reset transformations 
+	gluLookAt(500, 0, 700, 0, 0, 0, 0, 1, 0); //to set camera , center and up 
+
+
+	// Draw sea
+	glColor3ub(47, 76, 122); //define the color of the object 
+	glBegin(GL_QUADS); //start drwing the Quad 
+	glVertex2i(-500, 0);
+	glVertex2i(500, 0);
+	glVertex2i(500, 500);
+	glVertex2i(-500, 500);
+	glEnd();
+
+
+	// Draw beach
+	glColor3ub(223, 206, 157); //define the color of the object 
+	glBegin(GL_QUADS); //start drwing the Quad 
+	glVertex2i(500, 0);
+	glVertex2i(-500, 0);
+	glVertex2i(-500, -500);
+	glVertex2i(500, -500);
+	glEnd();
+
+
+	glBegin(GL_QUADS);
+	glVertex2i(-200, 10);
+	glVertex2i(-220, 100);   // Boat Base 
+	glVertex2i(220, 100);
+	glVertex2i(200, 10);
+	glEnd();
+
+
+	glColor3ub(156, 142, 142);
+	glBegin(GL_QUADS);
+	glVertex2i(-190, 100);
+	glVertex2i(-190, 160);  // 1st boat chimney
+	glVertex2i(-160, 160);
+	glVertex2i(-160, 100);
+	glEnd();
+
+	glPushMatrix(); //store matrix 
+	glTranslatef(250, -50, 0); // use Transalatef to change the postion 
+	glScalef(1.5, 1.5, 1.5); //  use scalef to change the size
+	glColor3ub(156, 142, 142);
+	glBegin(GL_QUADS);
+	glVertex2i(-190, 100);
+	glVertex2i(-190, 160);  // 2nd boat chimney
+	glVertex2i(-160, 160);
+	glVertex2i(-160, 100);
+	glEnd();
+	glPopMatrix(); //reset matrix 
+
+	glPushMatrix();
+	glTranslatef(300, 0, 0); // use Transalate to change the postion 
+	glBegin(GL_QUADS);
+	glVertex2i(-190, 100);
+	glVertex2i(-190, 160);  // 3rd boat chimney
+	glVertex2i(-160, 160);
+	glVertex2i(-160, 100);
+	glEnd();
+	glPopMatrix();
+
+
+	glColor3ub(245, 245, 245);
+	glBegin(GL_QUADS);
+	glVertex2i(-200, 180);
+	glVertex2i(-200, 190);   //chimney smoke 
+	glVertex2i(-190, 190);
+	glVertex2i(-190, 180);
+	glEnd();
+
+
+	glPushMatrix();
+	glTranslatef(30, 30, 0);
+	glBegin(GL_QUADS);
+	glVertex2i(-200, 180);
+	glVertex2i(-200, 190);   //chimney smoke 
+	glVertex2i(-190, 190);
+	glVertex2i(-190, 180);
+	glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(50, 0, 0);
+	glBegin(GL_QUADS);
+	glVertex2i(-200, 180);
+	glVertex2i(-200, 190);   //chimney smoke 
+	glVertex2i(-190, 190);
+	glVertex2i(-190, 180);
+	glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(180, 60, 0);
+	glBegin(GL_QUADS);
+	glVertex2i(-200, 180);
+	glVertex2i(-200, 190);   //chimney smoke 
+	glVertex2i(-190, 190);
+	glVertex2i(-190, 180);
+	glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(200, 20, 0);
+	glBegin(GL_QUADS);
+	glVertex2i(-200, 180);
+	glVertex2i(-200, 190);   //chimney smoke
+	glVertex2i(-190, 190);
+	glVertex2i(-190, 180);
+	glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(150, 20, 0);
+	glBegin(GL_QUADS);
+	glVertex2i(-200, 180);
+	glVertex2i(-200, 190);   //chimney smoke 
+	glVertex2i(-190, 190);
+	glVertex2i(-190, 180);
+	glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(320, 20, 0);
+	glBegin(GL_QUADS);
+	glVertex2i(-200, 180);
+	glVertex2i(-200, 190);   //chimney smoke 
+	glVertex2i(-190, 190);
+	glVertex2i(-190, 180);
+	glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(350, 0, 0);
+	glBegin(GL_QUADS);
+	glVertex2i(-200, 180);
+	glVertex2i(-200, 190);   //chimney smoke 
+	glVertex2i(-190, 190);
+	glVertex2i(-190, 180);
+	glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(300, 0, 0);
+	glBegin(GL_QUADS);
+	glVertex2i(-200, 180);
+	glVertex2i(-200, 190);   //chimney smoke 
+	glVertex2i(-190, 190);
+	glVertex2i(-190, 180);
+	glEnd();
+	glPopMatrix();
+	
+	glFlush();
+}
+void main() {
+	glutInitDisplayMode(GLUT_RGB ); // Determine the dispay mode of the window , here window will display system colors
+	glutInitWindowSize(500, 500); // control the width and height of the drawing window
+	glutCreateWindow("Final Project"); // create window under the name Final Project
+
+
+	glutDisplayFunc(draw); // send graphics to display window 
+	
+
+	glMatrixMode(GL_PROJECTION); //specifies which matrix is the current matrix. here we used Projrction mode 
+	glLoadIdentity();   // used to reset matrix and should be user when we switch between projection and model view 
+	gluPerspective(39, 1, 0, -100);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	
+	glutMainLoop(); //display evetything and wait 
+}
+
