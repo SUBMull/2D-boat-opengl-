@@ -1,2 +1,3 @@
 # 2D-boat-opengl-
-2D boat , with simple animation and an interaction!
+Simple 2D boat  , with simple animation and an interaction!
+using c++ and glut library,  
