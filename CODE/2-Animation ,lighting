@@ -14,9 +14,6 @@ void draw(void) {
 	glEnable(GL_COLOR_MATERIAL); //In order to use the object color 
 
 	//Set the properties of LIGHT0
-	//White-Specular
-	GLfloat s[] = { 1.0, 1.0, 1.0, 1.0 };
-	glLightfv(GL_LIGHT0, GL_SPECULAR, s);
 	//Position (x=200, y=200, z=300)/ Light source is positional because W = 1 
 	GLfloat pos[] = { 200 ,200 ,300, 1.0 };
 	glLightfv(GL_LIGHT0, GL_POSITION, pos);
