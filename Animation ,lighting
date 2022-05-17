@@ -1,0 +1,212 @@
+#include<Windows.h>
+#include<glut.h>
+
+GLfloat angle = 0; //Rotation angle to make the object move 
+void draw(void) {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //clere color and depth buffers
+
+	glLoadIdentity(); //reset transformations 
+	gluLookAt(500, 0, 700, 0, 0, 0, 0, 1, 0); //to set camera , center and up 
+
+	glShadeModel(GL_SMOOTH); //Smooth shading model, Lightening's evaluated at each vertex
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0); //Light source
+	glEnable(GL_COLOR_MATERIAL); //In order to use the object color 
+
+	//Set the properties of LIGHT0
+	//White-Specular
+	GLfloat s[] = { 1.0, 1.0, 1.0, 1.0 };
+	glLightfv(GL_LIGHT0, GL_SPECULAR, s);
+	//Position (x=200, y=200, z=300)/ Light source is positional because W = 1 
+	GLfloat pos[] = { 200 ,200 ,300, 1.0 };
+	glLightfv(GL_LIGHT0, GL_POSITION, pos);
+
+
+	// Draw sea
+	glColor3ub(47, 76, 122); //define the color of the object 
+	glBegin(GL_QUADS); //start drwing the Quad 
+	glVertex2i(-500, 0);
+	glVertex2i(500, 0);
+	glVertex2i(500, 500);
+	glVertex2i(-500, 500);
+	glEnd();
+
+
+	// Draw beach
+	glColor3ub(223, 206, 157); //define the color of the object 
+	glBegin(GL_QUADS); //start drwing the Quad 
+	glVertex2i(500, 0);
+	glVertex2i(-500, 0);
+	glVertex2i(-500, -500);
+	glVertex2i(500, -500);
+	glEnd();
+
+
+	glDisable(GL_COLOR_MATERIAL); //To unuse the object color 
+
+	//Polished bronze Material
+	GLfloat amb[] = { 0.25f, 0.148f, 0.06475f, 1.0f };
+	GLfloat diff[] = { 0.4f, 0.2368f, 0.1036f, 1.0f };
+	GLfloat spec[] = { 0.774597f, 0.458561f, 0.200621f, 1.0f };
+	GLfloat shine = 76.8f;
+
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
+	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
+
+
+	glPushMatrix();
+	glRotatef(angle, 0, 1, 0);// make the entire boat moves on y axis 
+	glBegin(GL_QUADS);
+	glVertex2i(-200, 10);
+	glVertex2i(-220, 100);   // Boat Base 
+	glVertex2i(220, 100);
+	glVertex2i(200, 10);
+	glEnd();
+
+	glEnable(GL_COLOR_MATERIAL); //In order to use the object color again
+
+
+	glColor3ub(156, 142, 142);
+	glBegin(GL_QUADS);
+	glVertex2i(-190, 100);
+	glVertex2i(-190, 160);  // 1st boat chimney
+	glVertex2i(-160, 160);
+	glVertex2i(-160, 100);
+	glEnd();
+
+	glPushMatrix(); //store matrix 
+	glTranslatef(250, -50, 0); //  Transalatef to change the postion 
+	glScalef(1.5, 1.5, 1.5); // scalef to change the size
+	glColor3ub(156, 142, 142);
+	glBegin(GL_QUADS);
+	glVertex2i(-190, 100);
+	glVertex2i(-190, 160);  // 2nd boat chimney
+	glVertex2i(-160, 160);
+	glVertex2i(-160, 100);
+	glEnd();
+	glPopMatrix(); //reset matrix 
+
+	glPushMatrix();
+	glTranslatef(300, 0, 0); //  Transalate to change the postion 
+	glBegin(GL_QUADS);
+	glVertex2i(-190, 100);
+	glVertex2i(-190, 160);  // 3rd boat chimney
+	glVertex2i(-160, 160);
+	glVertex2i(-160, 100);
+	glEnd();
+	glPopMatrix();
+
+
+	glColor3ub(245, 245, 245);
+	glBegin(GL_QUADS);
+	glVertex2i(-200, 180);
+	glVertex2i(-200, 190);   //chimney smoke 
+	glVertex2i(-190, 190);
+	glVertex2i(-190, 180);
+	glEnd();
+
+
+	glPushMatrix();
+	glTranslatef(30, 30, 0);
+	glBegin(GL_QUADS);
+	glVertex2i(-200, 180);
+	glVertex2i(-200, 190);   //chimney smoke 
+	glVertex2i(-190, 190);
+	glVertex2i(-190, 180);
+	glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(50, 0, 0);
+	glBegin(GL_QUADS);
+	glVertex2i(-200, 180);
+	glVertex2i(-200, 190);   //chimney smoke 
+	glVertex2i(-190, 190);
+	glVertex2i(-190, 180);
+	glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(180, 60, 0);
+	glBegin(GL_QUADS);
+	glVertex2i(-200, 180);
+	glVertex2i(-200, 190);   //chimney smoke 
+	glVertex2i(-190, 190);
+	glVertex2i(-190, 180);
+	glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(200, 20, 0);
+	glBegin(GL_QUADS);
+	glVertex2i(-200, 180);
+	glVertex2i(-200, 190);   //chimney smoke
+	glVertex2i(-190, 190);
+	glVertex2i(-190, 180);
+	glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(150, 20, 0);
+	glBegin(GL_QUADS);
+	glVertex2i(-200, 180);
+	glVertex2i(-200, 190);   //chimney smoke 
+	glVertex2i(-190, 190);
+	glVertex2i(-190, 180);
+	glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(320, 20, 0);
+	glBegin(GL_QUADS);
+	glVertex2i(-200, 180);
+	glVertex2i(-200, 190);   //chimney smoke 
+	glVertex2i(-190, 190);
+	glVertex2i(-190, 180);
+	glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(350, 0, 0);
+	glBegin(GL_QUADS);
+	glVertex2i(-200, 180);
+	glVertex2i(-200, 190);   //chimney smoke 
+	glVertex2i(-190, 190);
+	glVertex2i(-190, 180);
+	glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(300, 0, 0);
+	glBegin(GL_QUADS);
+	glVertex2i(-200, 180);
+	glVertex2i(-200, 190);   //chimney smoke 
+	glVertex2i(-190, 190);
+	glVertex2i(-190, 180);
+	glEnd();
+	glPopMatrix();
+	glPopMatrix(); //end rotation 
+
+	angle += 0.1; //increment by +0.1 to move the entire boat
+	glutSwapBuffers(); //to swaps the buffers of the current window 
+}
+
+
+void main() {
+	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE); // Determine the dispay mode of the window , here window will display system colors
+	glutInitWindowSize(500, 500); // control the width and height of the drawing window
+	glutCreateWindow("Final Project"); // create window under the name Final Project
+
+	glutDisplayFunc(draw); // send graphics to display window 
+	
+	glMatrixMode(GL_PROJECTION); //specifies which matrix is the current matrix. here we used Projrction mode 
+	glLoadIdentity();   // used to reset matrix and should be user when we switch between projection and model view 
+	gluPerspective(39, 1, 0, -100);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	glutIdleFunc(draw); //sets the global idle callback  , called after all the current events are processed.
+	glutMainLoop(); //display evetything and wait 
+}
+
